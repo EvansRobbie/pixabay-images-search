@@ -85,7 +85,9 @@ const Home = ({ searchTerm }: { searchTerm: string }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">All images</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        {searchTerm.length > 0 ? `Results for ${searchTerm} ` : "All images"}{" "}
+      </h2>
       <div className="grid grid-cols-1  md:grid-cols-3 gap-4">
         {isLoading ? (
           <p>Loading...</p>
@@ -93,7 +95,11 @@ const Home = ({ searchTerm }: { searchTerm: string }) => {
           images.map((image) => (
             <Link
               key={image.id}
-              to={`image/${image.tags.split(",").join("-")}/${image.id}`}
+              to={`image/${image.tags
+                .replace(/\s/g, "")
+                .split(",")
+
+                .join("-")}/${image.id}`}
               className="w-full relative group "
             >
               <img
