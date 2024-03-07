@@ -3,14 +3,17 @@ import "./App.css";
 import Home from "./pages/Home";
 import { DetailPage } from "./pages/DetailPage";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   return (
     <>
-      <Navbar />
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="container mx-auto mt-10">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home searchTerm={searchTerm} />} />
           <Route path="/image/:name/:id" element={<DetailPage />} />
         </Routes>
       </div>

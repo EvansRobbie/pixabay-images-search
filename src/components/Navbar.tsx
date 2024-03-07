@@ -1,13 +1,26 @@
-const Navbar = () => {
+import { Link } from "react-router-dom";
+const Navbar = ({
+  searchTerm,
+  setSearchTerm,
+}: {
+  searchTerm: string;
+  setSearchTerm: (searchTerm: string) => void;
+}) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <nav className="h-20 sticky inset-0 flex item-center z-20 justify-between bg-white shadow shadow-slate-300">
       <div className="container mx-auto flex items-center w-full justify-between">
         <div className="flex items-center gap-20">
-          <img
-            src="https://pixabay.com/static/img/logo.svg"
-            alt="pixabay logo"
-            className="w-32"
-          />
+          <Link to="/">
+            <img
+              src="https://pixabay.com/static/img/logo.svg"
+              alt="pixabay logo"
+              className="w-32"
+            />
+          </Link>
           <div className="h-full flex items-center w-full">
             <div className="bg-slate-500/20 px-6 py-2.5 rounded-lg flex items-center gap-4">
               <svg
@@ -28,6 +41,8 @@ const Navbar = () => {
               <input
                 placeholder="Search"
                 className="w-full outline-none bg-transparent "
+                value={searchTerm}
+                onChange={handleSearch}
               />
               <button className="bg-white rounded-md text-sm text-nowrap px-4 py-2">
                 Search Image
