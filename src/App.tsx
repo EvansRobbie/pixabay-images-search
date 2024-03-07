@@ -1,13 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
+import { DetailPage } from "./pages/DetailPage";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Navbar />
+      <div className="container mx-auto mt-10">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/image/:name/:id" element={<DetailPage />} />
+        </Routes>
+      </div>
     </>
   );
 }
